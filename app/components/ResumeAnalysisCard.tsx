@@ -1,9 +1,17 @@
-import { ResumeAnalysis } from '@prisma/client'
 import { TrendingUp, TrendingDown, Lightbulb, Target } from 'lucide-react'
 import { formatDate } from '@/lib/format-date'
 
 interface ResumeAnalysisCardProps {
-  analysis: ResumeAnalysis
+  analysis: {
+    id: string
+    matchScore: number
+    strengths: string[]
+    gaps: string[]
+    suggestedKeywords: string[]
+    bulletSuggestions: string[]
+    summary: string
+    createdAt: Date
+  }
 }
 
 export function ResumeAnalysisCard({ analysis }: ResumeAnalysisCardProps) {

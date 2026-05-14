@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { ApplicationStatus } from '@prisma/client'
+import type { ApplicationStatus } from '@prisma/client'
 
 export async function createApplication(formData: FormData) {
   const supabase = await createClient()

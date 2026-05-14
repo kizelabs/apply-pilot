@@ -1,13 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { ApplicationStatus } from '@prisma/client'
 import { updateApplicationStatus } from '@/app/actions/applications'
 import { Select } from './Select'
 
 interface StatusSelectorProps {
   applicationId: string
-  currentStatus: ApplicationStatus
+  currentStatus: string
 }
 
 const statusOptions = [
@@ -24,8 +23,7 @@ export function StatusSelector({ applicationId, currentStatus }: StatusSelectorP
 
   async function handleChange(value: string) {
     setLoading(true)
-    const newStatus = value as ApplicationStatus
-    await updateApplicationStatus(applicationId, newStatus)
+    await updateApplicationStatus(applicationId, value as 'SAVED' | 'APPLIED' | 'INTERVIEWING' | 'OFFER' | 'REJECTED' | 'ARCHIVED')
     setLoading(false)
   }
 

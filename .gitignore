@@ -48,8 +48,9 @@ next-env.d.ts
 .remember
 .vscode
 skills-lock.json
-/AGENTS.md
-/CLAUDE.md
+AGENTS.md
+CLAUDE.md
 RTK.md
 package-lock.json
 /docs
+

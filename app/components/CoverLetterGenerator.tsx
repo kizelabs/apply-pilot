@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Textarea } from './Textarea'
 import { Select } from './Select'
 import { Button } from './Button'
-import { CoverLetterTone } from '@prisma/client'
 import { Sparkles } from 'lucide-react'
 
 interface CoverLetterGeneratorProps {
@@ -22,11 +21,10 @@ const toneOptions = [
 
 export function CoverLetterGenerator({ applicationId, onGenerated }: CoverLetterGeneratorProps) {
   const [resumeText, setResumeText] = useState('')
-  const [tone, setTone] = useState<CoverLetterTone>('PROFESSIONAL')
+  const [tone, setTone] = useState('PROFESSIONAL')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [generatedContent, setGeneratedContent] = useState('')
-  const [coverLetterId, setCoverLetterId] = useState('')
 
   async function handleGenerate() {
     if (!resumeText.trim()) {
@@ -51,7 +49,6 @@ export function CoverLetterGenerator({ applicationId, onGenerated }: CoverLetter
 
       const data = await response.json()
       setGeneratedContent(data.content)
-      setCoverLetterId(data.id)
       onGenerated?.(data.id)
     } catch {
       setError('Failed to generate cover letter. Please try again.')
@@ -67,10 +64,7 @@ export function CoverLetterGenerator({ applicationId, onGenerated }: CoverLetter
           <h4 className="text-sm font-medium text-foreground">Generated Cover Letter</h4>
           <Button
             variant="secondary"
-            onClick={() => {
-              setGeneratedContent('')
-              setCoverLetterId('')
-            }}
+            onClick={() => setGeneratedContent('')}
           >
             <Sparkles className="w-4 h-4" />
             Generate New
@@ -94,7 +88,7 @@ export function CoverLetterGenerator({ applicationId, onGenerated }: CoverLetter
         label="Tone"
         options={toneOptions}
         value={tone}
-        onValueChange={(value) => setTone(value as CoverLetterTone)}
+        onValueChange={(value) => setTone(value)}
         disabled={loading}
       />
 

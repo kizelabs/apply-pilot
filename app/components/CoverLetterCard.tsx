@@ -1,12 +1,17 @@
-import { CoverLetter } from '@prisma/client'
 import { FileText } from 'lucide-react'
 import { formatDate } from '@/lib/format-date'
 
 interface CoverLetterCardProps {
-  coverLetter: CoverLetter
+  coverLetter: {
+    id: string
+    tone: string
+    content: string
+    createdAt: Date
+    updatedAt: Date
+  }
 }
 
-const toneLabels = {
+const toneLabels: Record<string, string> = {
   PROFESSIONAL: 'Professional',
   CONFIDENT: 'Confident',
   FRIENDLY: 'Friendly',
@@ -23,7 +28,7 @@ export function CoverLetterCard({ coverLetter }: CoverLetterCardProps) {
           <h3 className="text-lg font-semibold text-foreground">Cover Letter</h3>
         </div>
         <span className="px-2.5 py-1 rounded-lg text-xs font-medium bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
-          {toneLabels[coverLetter.tone]}
+          {toneLabels[coverLetter.tone] || coverLetter.tone}
         </span>
       </div>
 

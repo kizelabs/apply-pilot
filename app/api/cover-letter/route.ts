@@ -3,9 +3,8 @@ import { createClient } from '@/lib/supabase/server'
 import { prisma } from '@/lib/prisma'
 import { openai, MODEL } from '@/lib/openai'
 import { coverLetterSchema } from '@/lib/schemas/cover-letter'
-import { CoverLetterTone } from '@prisma/client'
 
-const toneDescriptions = {
+const toneDescriptions: Record<string, string> = {
   PROFESSIONAL: 'formal, business-appropriate, and polished',
   CONFIDENT: 'assertive, self-assured, and achievement-focused',
   FRIENDLY: 'warm, personable, and conversational',
@@ -45,7 +44,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Application not found' }, { status: 404 })
     }
 
-    const toneDesc = toneDescriptions[tone as CoverLetterTone]
+    const toneDesc = toneDescriptions[tone as string]
 
     // Generate cover letter with AI
     const prompt = `You are an expert cover letter writer. Write a compelling cover letter for this job application.
@@ -96,7 +95,7 @@ Return ONLY the cover letter text, no JSON formatting.`
     const coverLetter = await prisma.coverLetter.create({
       data: {
         applicationId,
-        tone: tone as CoverLetterTone,
+        tone: tone as 'PROFESSIONAL' | 'CONFIDENT' | 'FRIENDLY' | 'CONCISE' | 'STARTUP',
         content: validated.content,
       },
     })

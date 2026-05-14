@@ -1,10 +1,8 @@
-import { ApplicationStatus } from '@prisma/client'
-
 interface StatusBadgeProps {
-  status: ApplicationStatus
+  status: string
 }
 
-const statusConfig = {
+const statusConfig: Record<string, { label: string; className: string }> = {
   SAVED: { label: 'Saved', className: 'bg-zinc-500/10 text-zinc-500 dark:text-zinc-400' },
   APPLIED: { label: 'Applied', className: 'bg-secondary/10 text-secondary' },
   INTERVIEWING: { label: 'Interviewing', className: 'bg-primary/10 text-primary' },
@@ -14,7 +12,7 @@ const statusConfig = {
 }
 
 export function StatusBadge({ status }: StatusBadgeProps) {
-  const config = statusConfig[status]
+  const config = statusConfig[status] || { label: status, className: 'bg-zinc-500/10 text-zinc-500' }
 
   return (
     <span

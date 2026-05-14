@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { Navbar } from '@/app/components/Navbar'
 import { StatusBadge } from '@/app/components/StatusBadge'
 import { ApplicationFilters } from '@/app/components/ApplicationFilters'
-import { ApplicationStatus } from '@prisma/client'
-import { Prisma } from '@prisma/client'
 import { Plus, ExternalLink } from 'lucide-react'
 import { formatDate } from '@/lib/format-date'
 
@@ -25,7 +23,8 @@ export default async function ApplicationsPage({
     redirect('/login')
   }
 
-  const where: Prisma.ApplicationWhereInput = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const where: any = {
     userId: user.id,
   }
 
@@ -37,7 +36,7 @@ export default async function ApplicationsPage({
   }
 
   if (status) {
-    where.status = status as ApplicationStatus
+    where.status = status
   }
 
   const applications = await prisma.application.findMany({

@@ -7,8 +7,18 @@ import { Textarea } from '@/app/components/Textarea'
 import { Select } from '@/app/components/Select'
 import { Button } from '@/app/components/Button'
 import { updateApplication } from '@/app/actions/applications'
-import { Application } from '@prisma/client'
 import { Loader2 } from 'lucide-react'
+
+interface EditFormProps {
+  application: {
+    id: string
+    companyName: string
+    jobTitle: string
+    jobUrl: string | null
+    jobDescription: string | null
+    status: string
+  }
+}
 
 const statusOptions = [
   { value: 'SAVED', label: 'Saved' },
@@ -18,10 +28,6 @@ const statusOptions = [
   { value: 'REJECTED', label: 'Rejected' },
   { value: 'ARCHIVED', label: 'Archived' },
 ]
-
-interface EditFormProps {
-  application: Application
-}
 
 export function EditForm({ application }: EditFormProps) {
   const [error, setError] = useState<string>('')
