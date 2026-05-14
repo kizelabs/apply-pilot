@@ -117,8 +117,8 @@ export default function PrivacyPage() {
             <h2 className="text-lg font-semibold mb-3">11. Contact</h2>
             <p>
               For privacy-related questions or to exercise your rights, contact us at{' '}
-              <a href="mailto:privacy@applypilot.com" className="text-primary hover:text-primary/80 transition-colors duration-200">
-                privacy@applypilot.com
+              <a href="mailto:admin@kizelabs.my.id" className="text-primary hover:text-primary/80 transition-colors duration-200">
+                admin@kizelabs.my.id
               </a>
             </p>
           </section>
