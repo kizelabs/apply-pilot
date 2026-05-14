@@ -178,7 +178,7 @@ export default async function LandingPage() {
                 <path d="M2 12l10 5 10-5" />
               </svg>
             </div>
-            <span className="text-sm text-muted-foreground">© 2025 Apply Pilot</span>
+            <span className="text-sm text-muted-foreground">© 2025 Apply Pilot by KizeLabs</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <Link href="/terms" className="hover:text-foreground transition-colors duration-200 cursor-pointer">

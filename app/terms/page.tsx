@@ -97,8 +97,8 @@ export default function TermsPage() {
             <h2 className="text-lg font-semibold mb-3">10. Contact</h2>
             <p>
               If you have questions about these Terms of Service, please contact us at{' '}
-              <a href="mailto:support@applypilot.com" className="text-primary hover:text-primary/80 transition-colors duration-200">
-                support@applypilot.com
+              <a href="mailto:admin@kizelabs.my.id" className="text-primary hover:text-primary/80 transition-colors duration-200">
+                admin@kizelabs.my.id
               </a>
             </p>
           </section>
