@@ -2,12 +2,9 @@ import { createClient } from '@/lib/supabase/server'
 import { prisma } from '@/lib/prisma'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Navbar } from '@/app/components/Navbar'
-import { StatusSelector } from '@/app/components/StatusSelector'
-import { ResumeAnalyzer } from '@/app/components/ResumeAnalyzer'
-import { ResumeAnalysisCard } from '@/app/components/ResumeAnalysisCard'
-import { CoverLetterGenerator } from '@/app/components/CoverLetterGenerator'
-import { CoverLetterCard } from '@/app/components/CoverLetterCard'
+import { Navbar } from '@/components/layout'
+import { StatusSelector } from '@/features/applications/components'
+import { ResumeAnalyzer, ResumeAnalysisCard, CoverLetterGenerator, CoverLetterCard } from '@/features/ai/components'
 import { deleteApplication } from '@/app/actions/applications'
 import {
   ArrowLeft,
@@ -34,7 +31,8 @@ export default async function ApplicationDetailPage({
     redirect('/login')
   }
 
-  const application = await prisma.application.findUnique({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const application = await (prisma.application.findUnique as any)({
     where: {
       id,
       userId: user.id,
@@ -53,7 +51,36 @@ export default async function ApplicationDetailPage({
         take: 1,
       },
     },
-  })
+  }) as {
+    id: string
+    userId: string
+    companyName: string
+    jobTitle: string
+    jobDescription: string | null
+    jobUrl: string | null
+    status: string
+    appliedAt: Date | null
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    resumeAnalysis: {
+      id: string
+      matchScore: number
+      strengths: string[]
+      gaps: string[]
+      suggestedKeywords: string[]
+      bulletSuggestions: string[]
+      summary: string
+      createdAt: Date
+    }[]
+    coverLetters: {
+      id: string
+      tone: string
+      content: string
+      createdAt: Date
+      updatedAt: Date
+    }[]
+  } | null
 
   if (!application) {
     notFound()

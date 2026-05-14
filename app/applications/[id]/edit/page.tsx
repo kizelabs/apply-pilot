@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { prisma } from '@/lib/prisma'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Navbar } from '@/app/components/Navbar'
+import { Navbar } from '@/components/layout'
 import { EditForm } from './EditForm'
 import { ArrowLeft } from 'lucide-react'
 

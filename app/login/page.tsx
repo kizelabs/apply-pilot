@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Input } from '@/app/components/Input'
-import { Button } from '@/app/components/Button'
-import { GoogleAuthButton } from '@/app/components/GoogleAuthButton'
+import { Input, Button } from '@/components/form'
+import { GoogleAuthButton } from '@/features/auth/components'
 import { login } from '@/app/actions/auth'
 import { createClient } from '@/lib/supabase/client'
 

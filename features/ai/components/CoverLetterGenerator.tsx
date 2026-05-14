@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Textarea } from './Textarea'
-import { Select } from './Select'
-import { Button } from './Button'
+import { Textarea, Select, Button } from '@/components/form'
 import { Sparkles } from 'lucide-react'
 
 interface CoverLetterGeneratorProps {
