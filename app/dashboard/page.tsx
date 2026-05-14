@@ -69,7 +69,7 @@ export default async function DashboardPage() {
           </div>
           <Link
             href="/applications/new"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium hover:opacity-90 transition-all duration-200 shadow-md glow-primary cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-linear-to-r from-primary to-accent text-white rounded-xl font-medium hover:opacity-90 transition-all duration-200 shadow-md glow-primary cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             New Application

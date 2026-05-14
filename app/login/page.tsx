@@ -43,7 +43,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent mb-4 glow-primary">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-accent mb-4 glow-primary">
             <svg
               className="w-7 h-7 text-white"
               viewBox="0 0 24 24"

@@ -61,7 +61,7 @@ export default async function ApplicationsPage({
           </div>
           <Link
             href="/applications/new"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium hover:opacity-90 transition-all duration-200 shadow-md glow-primary cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-linear-to-r from-primary to-accent text-white rounded-xl font-medium hover:opacity-90 transition-all duration-200 shadow-md glow-primary cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             New Application
@@ -70,7 +70,7 @@ export default async function ApplicationsPage({
 
         {applications.length === 0 && !search && !status ? (
           <div className="glass rounded-2xl p-12 text-center shadow-sm">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent mb-4 glow-primary">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br from-primary to-accent mb-4 glow-primary">
               <Plus className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-lg font-semibold text-foreground mb-2">
@@ -81,7 +81,7 @@ export default async function ApplicationsPage({
             </p>
             <Link
               href="/applications/new"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium hover:opacity-90 transition-all duration-200 shadow-md glow-primary cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-linear-to-r from-primary to-accent text-white rounded-xl font-medium hover:opacity-90 transition-all duration-200 shadow-md glow-primary cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               Add Application

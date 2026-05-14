@@ -16,7 +16,6 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: npm ci
-      - run: npx prisma generate
       - run: npm run lint
 
   typecheck:
@@ -28,7 +27,6 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: npm ci
-      - run: npx prisma generate
       - run: npm run typecheck
 
   test:
@@ -40,5 +38,4 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: npm ci
-      - run: npx prisma generate
       - run: npm test
