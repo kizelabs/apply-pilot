@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Input } from '@/app/components/Input'
-import { Button } from '@/app/components/Button'
-import { GoogleAuthButton } from '@/app/components/GoogleAuthButton'
+import { Input, Button } from '@/components/form'
+import { GoogleAuthButton } from '@/features/auth/components'
 import { login } from '@/app/actions/auth'
 import { createClient } from '@/lib/supabase/client'
 
@@ -43,7 +42,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent mb-4 glow-primary">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-accent mb-4 glow-primary">
             <svg
               className="w-7 h-7 text-white"
               viewBox="0 0 24 24"

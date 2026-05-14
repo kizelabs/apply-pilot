@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Search } from 'lucide-react'
-import { Select } from './Select'
+import { Select } from '@/components/form'
 
 const statusOptions = [
   { value: '', label: 'All Statuses' },

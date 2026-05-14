@@ -23,7 +23,7 @@ export function Navbar({ email }: NavbarProps) {
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/dashboard" className="flex items-center gap-2.5 cursor-pointer">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center">
                 <svg
                   className="w-4.5 h-4.5 text-white"
                   viewBox="0 0 24 24"

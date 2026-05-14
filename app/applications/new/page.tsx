@@ -3,11 +3,8 @@
 import { useTransition, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Navbar } from '@/app/components/Navbar'
-import { Input } from '@/app/components/Input'
-import { Textarea } from '@/app/components/Textarea'
-import { Select } from '@/app/components/Select'
-import { Button } from '@/app/components/Button'
+import { Navbar } from '@/components/layout'
+import { Input, Textarea, Select, Button } from '@/components/form'
 import { createApplication } from '@/app/actions/applications'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 

@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Textarea } from './Textarea'
-import { Button } from './Button'
+import { Textarea, Button } from '@/components/form'
 import { FileText } from 'lucide-react'
 
 interface ResumeAnalyzerProps {

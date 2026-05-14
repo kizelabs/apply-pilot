@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { updateApplicationStatus } from '@/app/actions/applications'
-import { Select } from './Select'
+import { Select } from '@/components/form'
 
 interface StatusSelectorProps {
   applicationId: string

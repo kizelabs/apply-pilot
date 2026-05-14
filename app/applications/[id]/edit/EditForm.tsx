@@ -2,10 +2,7 @@
 
 import { useTransition, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Input } from '@/app/components/Input'
-import { Textarea } from '@/app/components/Textarea'
-import { Select } from '@/app/components/Select'
-import { Button } from '@/app/components/Button'
+import { Input, Textarea, Select, Button } from '@/components/form'
 import { updateApplication } from '@/app/actions/applications'
 import { Loader2 } from 'lucide-react'
 
