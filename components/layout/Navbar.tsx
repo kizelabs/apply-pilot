@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { LogoutButton } from './LogoutButton'
 import { ThemeToggle } from './ThemeToggle'
+import appIcon from '@/app/icon.png'
 
 interface NavbarProps {
   email?: string
@@ -23,21 +25,13 @@ export function Navbar({ email }: NavbarProps) {
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href="/dashboard" className="flex items-center gap-2.5 cursor-pointer">
-              <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center">
-                <svg
-                  className="w-4.5 h-4.5 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5" />
-                  <path d="M2 12l10 5 10-5" />
-                </svg>
-              </div>
+              <Image
+                src={appIcon}
+                alt="Apply Pilot"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-lg"
+              />
               <span className="font-semibold text-foreground text-lg">Apply Pilot</span>
             </Link>
 
