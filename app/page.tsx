@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import {
@@ -9,6 +10,7 @@ import {
   Shield,
   Zap,
 } from 'lucide-react'
+import appIcon from './icon.png'
 
 export default async function LandingPage() {
   const supabase = await createClient()
@@ -27,21 +29,13 @@ export default async function LandingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary to-accent flex items-center justify-center">
-                <svg
-                  className="w-4.5 h-4.5 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5" />
-                  <path d="M2 12l10 5 10-5" />
-                </svg>
-              </div>
+              <Image
+                src={appIcon}
+                alt="Apply Pilot"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-lg"
+              />
               <span className="font-semibold text-foreground text-lg">Apply Pilot</span>
             </div>
             <div className="flex items-center gap-3">
@@ -163,21 +157,13 @@ export default async function LandingPage() {
       <footer className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-8">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-linear-to-br from-primary to-accent flex items-center justify-center">
-              <svg
-                className="w-3.5 h-3.5 text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                <path d="M2 17l10 5 10-5" />
-                <path d="M2 12l10 5 10-5" />
-              </svg>
-            </div>
+            <Image
+              src={appIcon}
+              alt="Apply Pilot"
+              width={24}
+              height={24}
+              className="w-6 h-6 rounded-md"
+            />
             <span className="text-sm text-muted-foreground">© 2025 Apply Pilot by KizeLabs</span>
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
