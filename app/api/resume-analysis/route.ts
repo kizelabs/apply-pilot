@@ -68,23 +68,47 @@ Focus on:
       messages: [
         {
           role: 'system',
-          content: 'You are an expert resume reviewer. Always respond with valid JSON only.',
+          content: 'You are an expert resume reviewer. Always respond with valid JSON only, no extra text.',
         },
         {
           role: 'user',
           content: prompt,
         },
       ],
-      response_format: { type: 'json_object' },
     })
 
-    const content = completion.choices[0]?.message?.content
-    if (!content) {
+    const rawContent = completion.choices[0]?.message?.content
+    if (!rawContent) {
       return NextResponse.json({ error: 'No response from AI' }, { status: 500 })
     }
 
+    // DEBUG — remove once stable
+    console.log('[resume-analysis] raw AI response:\n', rawContent.slice(0, 2000))
+
+    // Strip <think>...</think> reasoning blocks (Qwen / DeepSeek models)
+    const stripped = rawContent.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
+    console.log('[resume-analysis] after stripping think blocks:\n', stripped.slice(0, 1000))
+
+    // Extract the first JSON object from the response
+    const jsonMatch = stripped.match(/\{[\s\S]*\}/)
+    if (!jsonMatch) {
+      console.error('[resume-analysis] No JSON found in stripped response:', stripped)
+      return NextResponse.json({ error: 'Invalid AI response format' }, { status: 500 })
+    }
+
     // Parse and validate AI output
-    const parsed = JSON.parse(content)
+    let parsed = JSON.parse(jsonMatch[0])
+    console.log('[resume-analysis] parsed keys:', Object.keys(parsed))
+
+    // Unwrap if the model nested the result under a top-level key (e.g. { "analysis": {...} })
+    const schemaKeys = ['matchScore', 'strengths', 'gaps', 'suggestedKeywords', 'bulletSuggestions', 'summary']
+    const hasDirectKeys = schemaKeys.some((k) => k in parsed)
+    if (!hasDirectKeys) {
+      console.log('[resume-analysis] unwrapping nested object, top-level keys:', Object.keys(parsed))
+      const nested = Object.values(parsed)[0]
+      if (nested && typeof nested === 'object') parsed = nested
+    }
+
     const validated = resumeAnalysisSchema.parse(parsed)
 
     // Save to database
@@ -105,7 +129,11 @@ Focus on:
   } catch (error) {
     console.error('Resume analysis error:', error)
     return NextResponse.json(
-      { error: 'Failed to analyze resume' },
+      {
+        error: 'Failed to analyze resume',
+        detail: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      },
       { status: 500 }
     )
   }

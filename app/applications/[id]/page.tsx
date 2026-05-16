@@ -4,7 +4,7 @@ import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Navbar } from '@/components/layout'
 import { StatusSelector } from '@/features/applications/components'
-import { ResumeAnalyzer, ResumeAnalysisCard, CoverLetterGenerator, CoverLetterCard } from '@/features/ai/components'
+import { AiTabs } from '@/features/ai/components'
 import { deleteApplication } from '@/app/actions/applications'
 import {
   ArrowLeft,
@@ -202,31 +202,12 @@ export default async function ApplicationDetailPage({
             </div>
           )}
 
-          {/* Resume Analysis */}
-          {application.resumeAnalysis[0] ? (
-            <ResumeAnalysisCard analysis={application.resumeAnalysis[0]} />
-          ) : (
-            <div className="glass rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Resume Analysis</h3>
-              <p className="text-sm text-muted-foreground mb-5">
-                Analyze your resume against this job description to get personalized feedback and suggestions.
-              </p>
-              <ResumeAnalyzer applicationId={application.id} />
-            </div>
-          )}
-
-          {/* Cover Letter */}
-          {application.coverLetters[0] ? (
-            <CoverLetterCard coverLetter={application.coverLetters[0]} />
-          ) : (
-            <div className="glass rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Cover Letter</h3>
-              <p className="text-sm text-muted-foreground mb-5">
-                Generate a personalized cover letter tailored to this job description.
-              </p>
-              <CoverLetterGenerator applicationId={application.id} />
-            </div>
-          )}
+          {/* AI Tools — tabbed */}
+          <AiTabs
+            applicationId={application.id}
+            resumeAnalysis={application.resumeAnalysis[0] ?? null}
+            coverLetter={application.coverLetters[0] ?? null}
+          />
         </div>
       </main>
     </div>
