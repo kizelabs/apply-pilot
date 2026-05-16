@@ -83,10 +83,13 @@ Return ONLY the cover letter text, no JSON formatting.`
       ],
     })
 
-    const content = completion.choices[0]?.message?.content
-    if (!content) {
+    const rawContent = completion.choices[0]?.message?.content
+    if (!rawContent) {
       return NextResponse.json({ error: 'No response from AI' }, { status: 500 })
     }
+
+    // Strip <think>...</think> reasoning blocks (Qwen / DeepSeek models)
+    const content = rawContent.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
 
     // Validate output
     const validated = coverLetterSchema.parse({ content })
